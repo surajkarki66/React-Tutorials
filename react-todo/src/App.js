@@ -1,7 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useReducer} from 'react';
 
 
 import classes from './App.module.css';
+
+const todoReducer = (currentTodo, action)=> {
+  switch (action.type) {
+    case 'ADD':
+      return [...currentTodo, action.todo];
+    case 'COMPLETE':
+      return [...currentTodo];
+    case 'REMOVE':
+      return [...action.todos];
+    default:
+      throw new Error('Something went wrong ');
+
+
+  }
+}
 
 function Todo(props) {   // component
   return (
@@ -43,6 +58,8 @@ function TodoForm({addTodo}) {          // component
 
 
 function App() {
+    const [todos, dispatch] = useReducer(todoReducer, []);
+    /*
     const [todos, setTodos] = useState([
       {
         text: "Learn about React",
@@ -57,23 +74,27 @@ function App() {
         isCompleted: false
       }
     ]);
-    
-
+    */
+   
     const addTodo = text => {
-      const newTodos = [...todos, { text }];
-      setTodos(newTodos);
+      //const newTodos = [...todos, { text }];
+      //setTodos(newTodos);
+      dispatch({type: 'ADD', todo: {text}});
     };
       
     const completeTodo = index => {
       const newTodos = [...todos];
       newTodos[index].isCompleted = true;
-      setTodos(newTodos);
+      //setTodos(newTodos);
+      dispatch({type: 'COMPLETE'});
     };
 
     const removeTodo = index => {
       const newTodos = [...todos];
       newTodos.splice(index, 1)
-      setTodos(newTodos);
+     // console.log(newTodos)
+      //setTodos(newTodos);
+      dispatch({type: 'REMOVE', todos: newTodos});
     }
    
     return (
