@@ -21,10 +21,32 @@ const ingredientReducer = (currentIngredient, action) => {
   }
 };
 
+
+// Another reducer
+const httpReducer = (curHttpState, action) => {
+  switch (action.type) {
+    case 'SEND':
+      return { loading: true, error: null, data: null};
+    case 'RESPONSE':
+      return {...curHttpState,  loading: false, data: action.responseData};
+    case 'ERROR':
+      return { loading: false, error: action.errorMessage};
+    case 'CLEAR':
+      return {...curHttpState, error: null};
+    default:
+      throw new Error('Should not be reached!');
+  }
+}
+
+
 const Ingredients = () =>  {
-  // Initializing useReducer
+  /************************* INITIALIZING THE useReducer() ******************************/
   const [userIngredients, dispatch] = useReducer(ingredientReducer, []); // for first time
+  const [httpState, dispatchHttp] = useReducer(httpReducer, {loading: false, error: null, data: null});
   
+
+
+  /************************ Using Built IN HOOK******************************************/
   //const [userIngredients, setUserIngredients ] = useState([]);
   //const [isLoading, setIsLoading] = useState(false);
   //const [error, setError] = useState();
@@ -35,13 +57,37 @@ const Ingredients = () =>  {
   }, [userIngredients])
 
   const filteredIngredientHandler = useCallback(filterIngredients => {
+    /********************** USING useState ************************************/
     //setUserIngredients(filterIngredients);
+
+    /************************** USING useReducer() ****************************/
     dispatch({type: 'SET',ingredients: filterIngredients })  // dispatching the action.
   }, []);
 
 
-  const addIngredientHandler = ingredient => {
-    //setIsLoading(true);
+  const addIngredientHandler = useCallback(ingredient => {
+     /********************** USING useState ************************************/
+    /*setIsLoading(true);
+    fetch('https://react-hooks-6a580.firebaseio.com/ingredients.json', {
+      method: 'POST',
+      body: JSON.stringify(ingredient),
+      headers: { 'Content-Type': 'application/json'}
+    })
+    .then(response=> {
+       setIsLoading(false);
+       return response.json();
+    })
+    .then(responseData=> {
+       setUserIngredients(prevIngredients=> [...prevIngredients, { id: responseData.name, ...ingredient}]);
+    })
+    .catch(err=> {
+       setIsLoading(false);
+       setError('Something Went Wrong');
+     
+    });
+
+    */
+     /************************** USING useReducer() ****************************/
     dispatchHttp({type: 'SEND'});
     fetch('https://react-hooks-6a580.firebaseio.com/ingredients.json', {
       method: 'POST',
@@ -49,33 +95,45 @@ const Ingredients = () =>  {
       headers: { 'Content-Type': 'application/json'}
     })
     .then(response=> {
-       //setIsLoading(false);
-       dispatchHttp({type: 'RESPONSE'});
+      dispatchHttp({type: 'RESPONSE'});
        return response.json();
     })
     .then(responseData=> {
-     // setUserIngredients(prevIngredients=> [...prevIngredients, { id: responseData.name, ...ingredient}])
-     dispatch({type: 'ADD', ingredient:  { id: responseData.name, ...ingredient} })
+      dispatch({type: 'ADD', ingredient:  { id: responseData.name, ...ingredient} })
     })
     .catch(err=> {
-     // setIsLoading(false);
-      //setError('Something Went Wrong');
       dispatchHttp({type: 'ERROR', errorMessage: 'Something Went Wrong!'});
-
     });
     
-  }
-  const removeIngredientHandler = ingredientId => {
-    //setIsLoading(true);
+   }, []);
+
+  const removeIngredientHandler = useCallback(ingredientId => {
+    /********************** USING useState ************************************/
+    /*
+    setIsLoading(true);
+    fetch(`https://react-hooks-6a580.firebaseio.com/ingredients/${ingredientId}.json`, {
+      method: 'DELETE',
+    })
+    .then(response=> {
+      setIsLoading(false);
+      setUserIngredients(prevIngredients =>
+      prevIngredients.filter(ingredient => ingredient.id !== ingredientId))
+    })
+    .catch(err=> {
+      setIsLoading(false);
+      setError('Something Went Wrong');
+
+    });
+
+    */
+
+    /************************** USING useReducer() ****************************/
     dispatchHttp({type: 'SEND'});
     fetch(`https://react-hooks-6a580.firebaseio.com/ingredients/${ingredientId}.json`, {
       method: 'DELETE',
     })
     .then(response=> {
-     // setIsLoading(false);
-     dispatchHttp({type: 'RESPONSE'});
-     // setUserIngredients(prevIngredients =>
-       // prevIngredients.filter(ingredient => ingredient.id !== ingredientId))
+       dispatchHttp({type: 'RESPONSE'});
        dispatch({type: 'DELETE', id: ingredientId});
     })
     .catch(err=> {
@@ -87,10 +145,13 @@ const Ingredients = () =>  {
     });
    
     
-  }
+  }, []);
 
   const clearError = () => {
+     /********************** USING useState ************************************/
     //setError(null);
+
+     /************************** USING useReducer() ****************************/
     dispatchHttp({type: 'CLEAR'});
   }
   return (
