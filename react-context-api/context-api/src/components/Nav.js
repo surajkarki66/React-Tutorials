@@ -3,8 +3,6 @@ import Context from "../store/context";
 
 export const Nav = () => {
   const { globalState, globalDispatch } = useContext(Context);
-  console.log(globalState);
-  console.log(globalDispatch);
   return (
     <nav>
       {globalState.isLoggedIn ? (
