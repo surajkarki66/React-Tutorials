@@ -1,9 +1,13 @@
 import React from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <h1>Download Image</h1>
+    </div>
+  );
 }
 
 export default App;
