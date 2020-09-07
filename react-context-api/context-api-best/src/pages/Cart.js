@@ -9,7 +9,7 @@ const CartPage = () => {
 
   useEffect(() => {
     console.log(context);
-  }, []);
+  }, [context]);
 
   return (
     <React.Fragment>
