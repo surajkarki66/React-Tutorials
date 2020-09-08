@@ -12,12 +12,19 @@ export const GlobalProvider = ({ children }) => {
       payload: employees,
     });
   }
+  function removeEmployee(id) {
+    dispatch({
+      type: "REMOVE_EMPLOYEES",
+      payload: id,
+    });
+  }
 
   return (
     <employeeContext.Provider
       value={{
         employees: state.employees,
         addEmployee,
+        removeEmployee,
       }}
     >
       {children}
