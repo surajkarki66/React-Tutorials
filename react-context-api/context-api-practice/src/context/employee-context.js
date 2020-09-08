@@ -1,6 +1,6 @@
 import React from "react";
 
-const initialState = {
+export const initialState = {
   employees: [
     {
       id: 1,

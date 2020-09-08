@@ -1,10 +1,10 @@
 import React, { useReducer } from "react";
 
-//import AppReducer from "./AppReducer";
-import GlobalContext from "./employee-context";
+import EmployeeReducer from "./employeeReducer";
+import { employeeContext, initialState } from "./employee-context";
 
 export const GlobalProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
+  const [state, dispatch] = useReducer(EmployeeReducer, initialState);
 
   function addEmployee(employees) {
     dispatch({
@@ -14,13 +14,13 @@ export const GlobalProvider = ({ children }) => {
   }
 
   return (
-    <GlobalContext.Provider
+    <employeeContext.Provider
       value={{
         employees: state.employees,
         addEmployee,
       }}
     >
       {children}
-    </GlobalContext.Provider>
+    </employeeContext.Provider>
   );
 };

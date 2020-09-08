@@ -1,9 +1,9 @@
 import React, { Fragment, useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import { employeeContext } from "../context/employee-context";
 import { Link } from "react-router-dom";
 
 export const EmployeeList = () => {
-  const { employees } = useContext(GlobalContext);
+  const { employees } = useContext(employeeContext);
   return (
     <Fragment>
       {employees.length > 0 ? (
