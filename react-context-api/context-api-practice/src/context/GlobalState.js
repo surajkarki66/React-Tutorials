@@ -19,12 +19,20 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
+  function editEmployee(employees) {
+    dispatch({
+      type: "EDIT_EMPLOYEE",
+      payload: employees,
+    });
+  }
+
   return (
     <employeeContext.Provider
       value={{
         employees: state.employees,
         addEmployee,
         removeEmployee,
+        editEmployee,
       }}
     >
       {children}
