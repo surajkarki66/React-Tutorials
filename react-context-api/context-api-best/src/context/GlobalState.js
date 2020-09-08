@@ -13,6 +13,7 @@ const GlobalState = (props) => {
 
   const [cartState, dispatch] = useReducer(shopReducer, { cart: [] });
 
+  // Those functions are like actions in redux.
   const addProductToCart = (product) => {
     setTimeout(() => {
       dispatch({ type: ADD_PRODUCT, product: product });

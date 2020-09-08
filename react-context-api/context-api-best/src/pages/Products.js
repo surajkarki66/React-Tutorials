@@ -5,6 +5,8 @@ import MainNavigation from "../components/MainNavigation";
 import "./Products.css";
 
 const ProductsPage = () => {
+  // const context = useContext(ShopContext);
+  //console.log(context);
   return (
     <ShopContext.Consumer>
       {(context) => (
