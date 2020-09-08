@@ -15,19 +15,19 @@ export default (state, action) => {
       };
 
     case "EDIT_EMPLOYEES":
-      const updatedEmployee = action.payload,
-      const updatedEmployees = state.employees.map(employee => {
+      const updatedEmployee = action.payload;
+
+      const updatedEmployees = state.employees.map((employee) => {
         if (employee.id === updatedEmployee.id) {
-            return updatedEmployee;
+          return updatedEmployee;
         }
         return employee;
-    });
+      });
 
-    return {
-      ...state,
-      employees: updatedEmployees
-    }
-
+      return {
+        ...state,
+        employees: updatedEmployees,
+      };
     default:
       return state;
   }

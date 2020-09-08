@@ -3,7 +3,9 @@ import { employeeContext } from "../context/employee-context";
 import { Link } from "react-router-dom";
 
 export const EmployeeList = () => {
-  const { employees, removeEmployee } = useContext(employeeContext);
+  const { employees, removeEmployee, editEmployee } = useContext(
+    employeeContext
+  );
   return (
     <Fragment>
       {employees.length > 0 ? (
@@ -22,7 +24,10 @@ export const EmployeeList = () => {
               </div>
               <div className="flex-auto text-right px-4 py-2 m-2">
                 <Link to={`/edit/${employee.id}`}>
-                  <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold mr-3 py-2 px-4 rounded-full inline-flex items-center">
+                  <button
+                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold mr-3 py-2 px-4 rounded-full inline-flex items-center"
+                    onClick={() => editEmployee(employee.id)}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
