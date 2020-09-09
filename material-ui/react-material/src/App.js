@@ -4,11 +4,12 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
 import Navbar from "./components/NavBar";
+import Posts from "./components/Posts";
 
 function App() {
   return (
     <div>
-      <AppBar color="primary" position="static">
+      <AppBar color="primary" position="sticky">
         <Toolbar>
           <Typography variant="title" color="inherit">
             My Header
@@ -16,6 +17,7 @@ function App() {
           <Navbar />
         </Toolbar>
       </AppBar>
+      <Posts />
     </div>
   );
 }
