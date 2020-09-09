@@ -3,6 +3,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import TypoGraphy from "@material-ui/core/Typography";
+import { Home, Book, AccountBox } from "@material-ui/icons";
 
 function Navbar(props) {
   return (
@@ -10,17 +11,17 @@ function Navbar(props) {
       <ListItem component="div">
         <ListItemText inset>
           <TypoGraphy color="inherit" variant="title">
-            Home
+            Home <Home />
           </TypoGraphy>
         </ListItemText>
         <ListItemText inset>
           <TypoGraphy color="inherit" variant="title">
-            Posts
+            Posts <Book />
           </TypoGraphy>
         </ListItemText>
         <ListItemText inset>
           <TypoGraphy color="inherit" variant="title">
-            Contact
+            Contact <AccountBox />
           </TypoGraphy>
         </ListItemText>
       </ListItem>
