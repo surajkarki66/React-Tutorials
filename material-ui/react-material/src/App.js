@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 
 import Navbar from "./components/NavBar";
 import Posts from "./components/Posts";
+import ContactForm from "./components/Contact";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         </Toolbar>
       </AppBar>
       <Posts />
+      <ContactForm />
     </div>
   );
 }
