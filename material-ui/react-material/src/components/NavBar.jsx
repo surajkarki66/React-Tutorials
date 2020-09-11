@@ -3,26 +3,37 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import TypoGraphy from "@material-ui/core/Typography";
-import { Home, Book, AccountBox } from "@material-ui/icons";
+import { Home, AccountBox } from "@material-ui/icons";
+import { NavLink } from "react-router-dom";
 
 function Navbar(props) {
   return (
     <List component="nav">
       <ListItem component="div">
         <ListItemText inset>
-          <TypoGraphy color="inherit" variant="title">
-            Home <Home />
-          </TypoGraphy>
+          <NavLink
+            style={{ textDecoration: "none", color: "white" }}
+            activeStyle={{ color: "red" }}
+            to="/posts"
+          >
+            {" "}
+            <TypoGraphy color="inherit" variant="title">
+              Posts
+            </TypoGraphy>
+            <Home />
+          </NavLink>{" "}
         </ListItemText>
         <ListItemText inset>
-          <TypoGraphy color="inherit" variant="title">
-            Posts <Book />
-          </TypoGraphy>
-        </ListItemText>
-        <ListItemText inset>
-          <TypoGraphy color="inherit" variant="title">
-            Contact <AccountBox />
-          </TypoGraphy>
+          <NavLink
+            style={{ textDecoration: "none", color: "white" }}
+            activeStyle={{ color: "red" }}
+            to="/contact"
+          >
+            <TypoGraphy color="inherit" variant="title">
+              Contact
+            </TypoGraphy>
+            <AccountBox />
+          </NavLink>{" "}
         </ListItemText>
       </ListItem>
     </List>

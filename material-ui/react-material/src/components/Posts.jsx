@@ -11,7 +11,7 @@ import { posts } from "../dummy-posts";
 function Posts(props) {
   return (
     <div style={{ marginTop: "20px", padding: "30px" }}>
-      <Grid container spacing={8} justify="center">
+      <Grid container spacing={40} justify="center">
         {posts.map((post) => (
           <Grid item key={post.title}>
             <Card>

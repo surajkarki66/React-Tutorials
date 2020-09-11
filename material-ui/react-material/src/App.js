@@ -1,26 +1,21 @@
 import React from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Navbar from "./components/NavBar";
+import Header from "./components/Header";
 import Posts from "./components/Posts";
 import ContactForm from "./components/Contact";
 
 function App() {
   return (
-    <div>
-      <AppBar color="primary" position="sticky">
-        <Toolbar>
-          <Typography variant="title" color="inherit">
-            My Header
-          </Typography>
-          <Navbar />
-        </Toolbar>
-      </AppBar>
-      <Posts />
-      <ContactForm />
-    </div>
+    <BrowserRouter>
+      <div>
+        <Header />
+        <Switch>
+          <Route path="/posts" component={Posts} exact />
+          <Route path="/contact" component={ContactForm} exact />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
