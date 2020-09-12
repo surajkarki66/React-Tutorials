@@ -3,6 +3,7 @@ import { Grid } from "@material-ui/core";
 
 import "./App.css";
 import Header from "./components/Header";
+import Content from "./components/Content";
 
 function App() {
   return (
@@ -11,11 +12,11 @@ function App() {
         <Header />
       </Grid>
       <Grid item container>
-        <Grid item xs={0} sm={2} />
+        <Grid item xs={false} sm={2} />
         <Grid item xs={12} sm={8}>
-          This is content
+          <Content />
         </Grid>
-        <Grid item xs={0} sm={2} />
+        <Grid item xs={false} sm={2} />
       </Grid>
     </Grid>
   );
