@@ -7,13 +7,13 @@ import data from "../data";
 const Content = () => {
   const getCoffeeMakerCard = (coffeeMakerObj) => {
     return (
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={4} key={coffeeMakerObj.title}>
         <CoffeeCard {...coffeeMakerObj} />
       </Grid>
     );
   };
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={3}>
       {data.map((coffeeMakerObj) => getCoffeeMakerCard(coffeeMakerObj))}
     </Grid>
   );

@@ -8,13 +8,30 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ShareIcon from "@material-ui/icons/Share";
 import { Avatar, IconButton } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+  },
+  headerContent: {
+    height: "40px",
+  },
+  media: {
+    height: "150px",
+  },
+  description: {
+    height: "105px",
+  },
+});
 const CoffeeCard = (props) => {
-  const { avatarUrl, title, subtitle, description, imageUrl } = props;
+  const { avatarUrl, title, price, description, imageUrl } = props;
+  const classes = useStyles();
 
   return (
-    <Card>
+    <Card className={classes.root}>
       <CardHeader
+        className={classes.headerContent}
         avatar={<Avatar aria-label="recipe" src={avatarUrl} />}
         action={
           <IconButton aria-label="settings">
@@ -22,12 +39,16 @@ const CoffeeCard = (props) => {
           </IconButton>
         }
         title={title}
-        subheader={subtitle}
+        subheader={price}
       />
-      <CardMedia style={{ height: "150px" }} image={imageUrl} />
+      <CardMedia className={classes.media} image={imageUrl} />
 
       <CardContent>
-        <Typography variant="body2" component="p">
+        <Typography
+          className={classes.description}
+          variant="body2"
+          component="p"
+        >
           {description}
         </Typography>
       </CardContent>

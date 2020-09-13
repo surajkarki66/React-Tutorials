@@ -23,7 +23,7 @@ export default [
     title: "Hamilton Beach Flexbrew",
     price: "$89.99",
     description:
-      "No two coffee drinkers are the same – so, the flexibility to customize how and what you brew is key. From fresh grounds to K-Cup pods, the Hamilton Beach FlexBrew 2-Way Coffee Maker gives you the options to please fans of all types of coffees.",
+      "No two coffee drinkers are the same – so, the flexibility to customize how and what you brew is key. ",
     avatarUrl:
       "https://images-na.ssl-images-amazon.com/images/I/81mjh5ZSu1L._AC_SL1500_.jpg",
     imageUrl:
@@ -43,7 +43,7 @@ export default [
     title: "Cafe Du Chateau French Press",
     price: "$32.95",
     description:
-      "We use double stainless steel screen filters on a durable plunger supported by a spring loaded base plate to seal the edges, followed by a final top lid strainer to give you a pure brew with no grounds unlike other cheap presses.",
+      "We use double stainless steel screen filters on a durable plunger supported by a spring loaded base plate to seal the edges.",
     avatarUrl:
       "https://images-na.ssl-images-amazon.com/images/I/81BdxpiRtCL._AC_SL1500_.jpg",
     imageUrl:

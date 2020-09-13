@@ -13,7 +13,7 @@ function App() {
       </Grid>
       <Grid item container>
         <Grid item xs={false} sm={2} />
-        <Grid item xs={12} sm={8}>
+        <Grid style={{ marginTop: "20px" }} item xs={12} sm={8}>
           <Content />
         </Grid>
         <Grid item xs={false} sm={2} />
