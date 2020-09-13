@@ -4,8 +4,10 @@ import { Grid } from "@material-ui/core";
 import "./App.css";
 import Header from "./components/Header";
 import Content from "./components/Content";
+import CoolButton from "./practice/CoolButton";
 
 function App() {
+  const cool = true;
   return (
     <Grid container direction="column">
       <Grid item>
@@ -18,6 +20,7 @@ function App() {
         </Grid>
         <Grid item xs={false} sm={2} />
       </Grid>
+      <CoolButton cool={cool} />
     </Grid>
   );
 }
