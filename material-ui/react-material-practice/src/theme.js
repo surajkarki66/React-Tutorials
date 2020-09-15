@@ -5,6 +5,7 @@ import green from "@material-ui/core/colors/green";
 // this is the process of overriding the default theming of material ui
 const theme = createMuiTheme({
   palette: {
+    // type: "dark", for dark mode
     primary: purple,
     secondary: green,
   },

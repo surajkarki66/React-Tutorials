@@ -7,6 +7,7 @@ import Content from "./components/Content";
 import CoolButton from "./practice/CoolButton";
 import Button from "./practice/Button";
 import TypoGraphy from "./practice/Typography";
+import PaperPractice from "./practice/Paper";
 
 function App() {
   const cool = true;
@@ -25,6 +26,7 @@ function App() {
       <CoolButton cool={cool} />
       <Button />
       <TypoGraphy />
+      <PaperPractice />
     </Grid>
   );
 }
