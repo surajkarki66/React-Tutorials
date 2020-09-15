@@ -5,6 +5,8 @@ import "./App.css";
 import Header from "./components/Header";
 import Content from "./components/Content";
 import CoolButton from "./practice/CoolButton";
+import Button from "./practice/Button";
+import TypoGraphy from "./practice/Typography";
 
 function App() {
   const cool = true;
@@ -21,6 +23,8 @@ function App() {
         <Grid item xs={false} sm={2} />
       </Grid>
       <CoolButton cool={cool} />
+      <Button />
+      <TypoGraphy />
     </Grid>
   );
 }
