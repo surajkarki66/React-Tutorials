@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Grid, Paper, Switch } from "@material-ui/core";
 import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -15,7 +15,6 @@ const useStyles = makeStyles({
 function App() {
   const classes = useStyles();
   const [darkMode, setDarkMode] = useState(false);
-  console.log(darkMode);
 
   // this is the process of overriding the default theming of material ui
   const darkTheme = createMuiTheme({
