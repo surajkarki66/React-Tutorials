@@ -38,19 +38,17 @@ export default function PokeDex(props) {
 
   const getPokemonCard = (pokemonId) => {
     const { id, name } = pokemonData[`${pokemonId}`];
-    const sprite = `https://raw.githubusecontent.com/PokeAPI/sprites/${pokemonId}`;
+    const sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
     return (
-      <Grid item xs={12} sm={4} keys={pokemonId}>
-        <Card onClick={() => history.push(`/${pokemonId}`)}>
+      <Grid item xs={12} sm={4} keys={id}>
+        <Card onClick={() => history.push(`/${id}`)}>
           <CardMedia
             className={classes.cardMedia}
             image={sprite}
-            style={{ width: "130px", height: "130px" }}
+            style={{ width: "150px", height: "150px" }}
           />
           <CardContent className={classes.cardContent}>
-            <Typography>{`${pokemonId}. ${toFirstCharUppercase(
-              name
-            )}`}</Typography>
+            <Typography>{`${id}. ${toFirstCharUppercase(name)}`}</Typography>
           </CardContent>
         </Card>
       </Grid>
