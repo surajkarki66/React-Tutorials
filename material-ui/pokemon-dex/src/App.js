@@ -6,7 +6,7 @@ import PokeDex from "./components/Pokedex";
 function App() {
   return (
     <Switch>
-      <Route path="/" render={(props) => <PokeDex {...props} />} />
+      <Route exact path="/" render={(props) => <PokeDex {...props} />} />
       <Route
         exact
         path="/:pokemonId"
