@@ -12,6 +12,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 
 import mockData from "../mockData";
+import { toFirstCharUppercase } from "../constants";
 
 const useStyles = makeStyles({
   pokedexContainer: {
@@ -26,10 +27,6 @@ const useStyles = makeStyles({
     textAlign: "center",
   },
 });
-
-const toFirstCharUppercase = (name) => {
-  return name.charAt(0).toUpperCase() + name.slice(1);
-};
 
 export default function PokeDex(props) {
   const { history } = props;
