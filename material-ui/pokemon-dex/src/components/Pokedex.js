@@ -8,14 +8,16 @@ import {
   CardMedia,
   CircularProgress,
   Typography,
+  TextField,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { fade, makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
+import SearchIcon from "@material-ui/icons/Search";
 
 import mockData from "../mockData";
 import { toFirstCharUppercase } from "../constants";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   pokedexContainer: {
     paddingTop: "20px",
     paddingLeft: "50px",
@@ -27,12 +29,32 @@ const useStyles = makeStyles({
   cardContent: {
     textAlign: "center",
   },
-});
+  searchContainer: {
+    display: "flex",
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    paddingLeft: "20px",
+    paddingRight: "20px",
+    marginTop: "5px",
+    marginBottom: "5px",
+  },
+  searchIcon: {
+    alignSelf: "flex-end" /* search icon goes to bottom(end) */,
+    marginBottom: "5px",
+  },
+  searchInput: {
+    width: "200px",
+    margin: "5px",
+  },
+}));
 
 export default function PokeDex(props) {
   const { history } = props;
   const [pokemonData, setPokemonData] = useState({});
+  const [filter, setFilter] = useState("");
   const classes = useStyles();
+  const handleSearchChange = (e) => {
+    setFilter(e.target.value);
+  };
 
   useEffect(() => {
     axios
@@ -74,12 +96,24 @@ export default function PokeDex(props) {
   return (
     <React.Fragment>
       <AppBar position="static">
-        <Toolbar />
+        <Toolbar>
+          <div className={classes.searchContainer}>
+            <SearchIcon className={classes.searchIcon} />
+            <TextField
+              className={classes.searchInput}
+              label="Pokemon"
+              variant="standard"
+              onChange={handleSearchChange}
+            />
+          </div>
+        </Toolbar>
       </AppBar>
       {pokemonData ? (
         <Grid className={classes.pokedexContainer} container spacing={2}>
-          {Object.keys(pokemonData).map((pokemonId) =>
-            getPokemonCard(pokemonId)
+          {Object.keys(pokemonData).map(
+            (pokemonId) =>
+              pokemonData[pokemonId].name.includes(filter) &&
+              getPokemonCard(pokemonId)
           )}
         </Grid>
       ) : (

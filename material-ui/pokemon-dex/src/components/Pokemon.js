@@ -14,7 +14,6 @@ const Pokemon = (props) => {
       .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`)
       .then(function (response) {
         const { data } = response;
-        console.log(data);
         setPokemon(data);
       })
       .catch(function (error) {
