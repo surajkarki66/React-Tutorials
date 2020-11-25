@@ -1,24 +1,23 @@
-import React, {useState, useReducer} from 'react';
+import axios from "axio";
+import React, { useState, useReducer } from "react";
 
+import classes from "./App.module.css";
 
-import classes from './App.module.css';
-
-const todoReducer = (currentTodo, action)=> {
+const todoReducer = (currentTodo, action) => {
   switch (action.type) {
-    case 'ADD':
+    case "ADD":
       return [...currentTodo, action.todo];
-    case 'COMPLETE':
+    case "COMPLETE":
       return [...currentTodo];
-    case 'REMOVE':
+    case "REMOVE":
       return [...action.todos];
     default:
-      throw new Error('Something went wrong ');
-
-
+      throw new Error("Something went wrong ");
   }
-}
+};
 
-function Todo(props) {   // component
+function Todo(props) {
+  // component
   return (
     <div
       className={classes.todo}
@@ -27,17 +26,20 @@ function Todo(props) {   // component
       {props.todo.text}
 
       <div>
-        <button onClick={() => props.completeTodo(props.index)}>Complete</button>
+        <button onClick={() => props.completeTodo(props.index)}>
+          Complete
+        </button>
         <button onClick={() => props.removeTodo(props.index)}>x</button>
       </div>
     </div>
   );
-} 
+}
 
-function TodoForm({addTodo}) {          // component
+function TodoForm({ addTodo }) {
+  // component
   const [value, setValue] = useState("");
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!value) return;
     addTodo(value);
@@ -50,16 +52,16 @@ function TodoForm({addTodo}) {          // component
         type="text"
         className="input"
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
       />
     </form>
   );
 }
 
-
 function App() {
-    const [todos, dispatch] = useReducer(todoReducer, []);
-    /*
+  const [todos, dispatch] = useReducer(todoReducer, []);
+ 
+  /*
     const [todos, setTodos] = useState([
       {
         text: "Learn about React",
@@ -75,46 +77,45 @@ function App() {
       }
     ]);
     */
-   
-    const addTodo = text => {
-      //const newTodos = [...todos, { text }];
-      //setTodos(newTodos);
-      dispatch({type: 'ADD', todo: {text}});
-    };
-      
-    const completeTodo = index => {
-      const newTodos = [...todos];
-      newTodos[index].isCompleted = true;
-      //setTodos(newTodos);
-      dispatch({type: 'COMPLETE'});
-    };
 
-    const removeTodo = index => {
-      const newTodos = [...todos];
-      newTodos.splice(index, 1)
-     // console.log(newTodos)
-      //setTodos(newTodos);
-      dispatch({type: 'REMOVE', todos: newTodos});
-    }
-   
-    return (
-        <div className={classes.app}>
-          <h1 style={{textAlign: 'center'}}>TODO APP</h1>
-          <div className={classes.todolist}>
-            {todos.map((todo, index) => (
-              <Todo
-                key={index}// default react 
-                index={index}
-                todo={todo}
-                completeTodo={completeTodo}
-                removeTodo={removeTodo}
-              />
-            ))}
-            <TodoForm addTodo={addTodo} />
-          </div>
-        </div>
-      );
+  const addTodo = (text) => {
+    //const newTodos = [...todos, { text }];
+    //setTodos(newTodos);
+    dispatch({ type: "ADD", todo: { text } });
+  };
+
+  const completeTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos[index].isCompleted = true;
+    //setTodos(newTodos);
+    dispatch({ type: "COMPLETE" });
+  };
+
+  const removeTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    // console.log(newTodos)
+    //setTodos(newTodos);
+    dispatch({ type: "REMOVE", todos: newTodos });
+  };
+
+  return (
+    <div className={classes.app}>
+      <h1 style={{ textAlign: "center" }}>TODO APP</h1>
+      <div className={classes.todolist}>
+        {todos.map((todo, index) => (
+          <Todo
+            key={index} // default react
+            index={index}
+            todo={todo}
+            completeTodo={completeTodo}
+            removeTodo={removeTodo}
+          />
+        ))}
+        <TodoForm addTodo={addTodo} />
+      </div>
+    </div>
+  );
 }
-
 
 export default App;
